@@ -5,6 +5,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+import { basic } from '@/css/index.js'
+Vue.use(basic)
+
 new Vue({
   router,
   store,
