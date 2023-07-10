@@ -8,6 +8,11 @@ Vue.config.productionTip = false
 import { basic } from '@/css/index.js'
 Vue.use(basic)
 
+import naver from 'vue-naver-maps'
+Vue.use(naver, {
+  clientID: '6kbpgfbf8d'
+})
+
 new Vue({
   router,
   store,

@@ -89,12 +89,11 @@
       <div class="introduce">
         <div class="list">
           <div class="item" v-for="index in 3" v-bind:key="index">
-            <div class="introduce">
-              <p>이 회사만의 장점을 적어주세요</p>
-              <button>굳</button>
-            </div>
             <div class="image">
-              <p>이곳에는 이미지가 들어갑니다</p>
+              <p>이미지</p>
+            </div>
+            <div class="cover">
+              <p>설명</p>
             </div>
           </div>
         </div>
@@ -119,7 +118,9 @@
           <h2>찾아오시는 길</h2>
         </div>
         <div class="map">
-          <p>지도</p>
+          <naver-maps :width="710" :height="350" :mapOptions="mapOptions">
+            <naver-marker :lat="marker.lat" :lng="marker.lng" @click="onMarkerClicked" />
+          </naver-maps>
         </div>
       </div>
     </div>
@@ -134,9 +135,25 @@
 
 <script>
 export default {
+  data() {
+    return {
+      mapOptions: {
+        zoom: 16,
+        lat: 37.572337,
+        lng: 127.003134
+      },
+      marker: {
+        lat: 37.573620,
+        lng: 127.004421
+      }
+    }
+  },
   methods: {
     chick() {
       console.log('chick');
+    },
+    onMarkerClicked(){
+      window.open('https://map.naver.com/v5/search/%EB%8C%80%EC%96%91inc/place/1329507581?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=15,0,0,0,dh');
     },
     clickFixedArea() {
       const fixedArea = this.$refs.fixedArea;
@@ -146,6 +163,7 @@ export default {
         fixedArea.className = 'area';
         fixedArea.style.height = '40px';
         fixedArea.style.borderRadius = '50%';
+        fixedArea.style.borderBottomRightRadius = '5px';
 
         fixedList.className = 'none';
       }
@@ -286,6 +304,9 @@ export default {
               align-items: end;
             }
             > .list {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
               margin-top: 20px;
               background-color: white;
               border: 1px solid dimgray;
@@ -314,7 +335,7 @@ export default {
         position: absolute;
         top: -20px;
         left: -3px;
-        transition-duration: 0.8s;
+        transition-duration: 0.6s;
         transition-timing-function: ease-in-out;
 
         > img {
@@ -326,7 +347,7 @@ export default {
         width: 34px;
         height: 4px;
         background-color: white;
-        transition-duration: 0.8s;
+        transition-duration: 0.6s;
         transition-timing-function: ease-in-out;
       }
       > .up-chain {
@@ -373,28 +394,40 @@ export default {
 
     > .list {
       display: grid;
-      grid-template-rows: repeat(3, 1fr);
+      width: 712px;
+      grid-template-columns: repeat(3, 1fr);
       gap: 50px;
 
       > * {
-        display: flex;
-        width: 700px;
-        height: 200px;
+        cursor: pointer;
+        position: relative;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        height: 192px;
         border: 1px solid;
         border-radius: 5px;
 
-        > .introduce {
+        > * {
+          position: absolute;
           display: flex;
-          flex-direction: column;
-          padding: 5px;
+          width: 100%;
+          height: 100%;
         }
         > .image {
-          display: flex;
-          width: 200px;
-          margin-left: auto;
-          overflow: hidden;
-          border-left: 1px solid dimgray;
+          position: absolute;
+          justify-content: center;
+          align-items: start;
         }
+        > .cover {
+          position: absolute;
+          justify-content: center;
+          align-items: center;
+          background: rgba($color: rgb(218, 218, 218), $alpha: 0.5);
+        }
+      }
+      > *:hover > .cover {
+        display: none;
       }
     }
   }
@@ -430,7 +463,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px 0;
+    margin: 50px 0 150px;
 
     > .title {
       margin-bottom: 10px;
