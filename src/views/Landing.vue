@@ -98,7 +98,7 @@
           </div>
         </div>
       </div>
-      <div class="review">
+      <!-- <div class="review">
         <div class="area">
           <div class="flex align-center cursor">
             <p>{{ '<' }}</p>
@@ -112,8 +112,62 @@
             <p>{{ '>' }}</p>
           </div>
         </div>
+      </div> -->
+      <div class="delivery">
+        <div class="area">
+          <div class="list fade">
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Kimyoungseok</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Everland</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Safari</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>FireFox</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Papyrus</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Sand</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Apple</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Amazon</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Naver</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Microsoft</p>
+            </div>
+            <div class="item">
+              <img src="@/assets/images/로고.svg">
+              <p>Google</p>
+            </div>
+            <div class="item" v-for="index in 15" v-bind:key="index">
+              <img src="@/assets/images/로고.svg">
+              <p>Vue</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="company">
+      <div class="way">
         <div class="title">
           <h2>찾아오시는 길</h2>
         </div>
@@ -401,9 +455,6 @@ export default {
       > * {
         cursor: pointer;
         position: relative;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
         height: 192px;
         border: 1px solid;
         border-radius: 5px;
@@ -459,7 +510,40 @@ export default {
       }
     }
   }
-  > .company {
+  > .delivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+
+    > .area {
+      width: 700px;
+      padding: 5px;
+      border: 1px solid dimgray;
+      background-color: ivory;
+
+      > .list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        > .item {
+          display: flex;
+          background-color: white;
+          border: 1px solid dimgray;
+          border-radius: 5px;
+          padding: 3px;
+
+          > img {
+            width: 10px;
+            margin-right: 5px;
+          }
+        }
+      }
+
+    }
+  }
+  > .way {
     display: flex;
     flex-direction: column;
     align-items: center;
